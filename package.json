@@ -9,9 +9,7 @@
     "serve": "node index.js"
   },
   "devDependencies": {
-    "nodemon": "^3.0.3",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.5.4"
+    "nodemon": "^3.0.3"
   },
   "dependencies": {
     "@slack/web-api": "7.3.4",
