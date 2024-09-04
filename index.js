@@ -30,12 +30,14 @@ app.post("/webhook", (req, res) => {
   console.log(req.body);
   const body = req.body;
 
-  if (body.field === "messages") {
-    const message = body.value.message.text;
-    console.log("Received message from Facebook:", message);
+  if (body.object === "page") {
+    body.entry.forEach((entry) => {
+      const message = entry.messaging[0].message.text;
+      console.log("Received message from Facebook:", message);
 
-    // Send message to Slack
-    sendMessage(`New message on Facebook: ${message}`);
+      // Send message to Slack
+      sendMessage(`New message on Facebook: ${message}`);
+    });
 
     res.status(200).send("EVENT_RECEIVED");
   } else {
