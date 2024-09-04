@@ -6,7 +6,7 @@ const web = new WebClient(configs.slackToken);
 async function sendMessage(text) {
   try {
     await web.chat.postMessage({
-      channel: configs.channelId,
+      channel: configs.slackChannelId,
       text: text,
     });
     console.log("Message sent to Slack channel");
