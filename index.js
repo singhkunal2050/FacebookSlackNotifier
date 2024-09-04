@@ -1,11 +1,10 @@
 import express from "express";
 import bodyParser from "body-parser";
 import { sendMessage } from "./utils/slack.js";
+import { verifyToken } from "./config/appConfigs.js";
 
 const app = express();
 app.use(bodyParser.json());
-
-const VERIFY_TOKEN = "YOUR_VERIFY_TOKEN"; // Replace with your actual verification token
 
 // Handle Facebook Webhook verification
 app.get("/webhook", (req, res) => {
@@ -14,7 +13,7 @@ app.get("/webhook", (req, res) => {
   const challenge = req.query["hub.challenge"];
 
   if (mode && token) {
-    if (mode === "subscribe" && token === VERIFY_TOKEN) {
+    if (mode === "subscribe" && token === verifyToken) {
       console.log("WEBHOOK_VERIFIED");
       res.status(200).send(challenge);
     } else {
