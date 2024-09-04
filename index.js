@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import { sendMessage } from "./utils/slack.js";
-import { verifyToken } from "./config/appConfigs.js";
+import configs from "./config/appConfigs.js";
 
 const app = express();
 app.use(bodyParser.json());
@@ -13,7 +13,7 @@ app.get("/webhook", (req, res) => {
   const challenge = req.query["hub.challenge"];
 
   if (mode && token) {
-    if (mode === "subscribe" && token === verifyToken) {
+    if (mode === "subscribe" && token === configs.verifyToken) {
       console.log("WEBHOOK_VERIFIED");
       res.status(200).send(challenge);
     } else {
