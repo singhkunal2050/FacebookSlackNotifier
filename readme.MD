@@ -49,7 +49,7 @@ Replace `'your-slack-bot-token'`, `'your-slack-channel-id'`, and `'your-facebook
 SLACK_TOKEN=your-slack-token
 SLACK_CHANNEL_ID=your-channel-id
 VERIFY_TOKEN=your-verify-token
-PORT=3000
+appPort=3000
 ```
 
 ### 4. Start the Development Server
