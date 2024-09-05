@@ -12,23 +12,27 @@ app.get("/webhook", verifyWebhook);
 
 // Handle Facebook messages
 app.post("/webhook", (req: Request, res: Response) => {
-  console.log("Received message from Facebook:", req.body);
-  console.log(req.body.entry);
-  console.log(JSON.stringify(req.body.entry));
+  try {
+    var signature = req.headers["x-hub-signature-256"];
+    console.log("Received message from Facebook:", req.body, signature);
 
-  if (req.body.object === "page") {
-    sendMessage(JSON.stringify(req.body.entry));
-    req.body.entry.forEach((entry: any) => {
-      const message = entry.messaging[0].message.text;
-      console.log("Processing message:", message);
+    if (!signature) {
+      console.warn(`Couldn't find "x-hub-signature-256" in headers.`);
+      return res.sendStatus(403);
+    }
 
-      // Send message to Slack
+    console.log(JSON.stringify(req.body.entry));
+
+    if (req.body.object === "page") {
+      const message = req.body.entry[0].messaging[0]?.message?.text;
       sendMessage(`New message on Facebook: ${message}`);
-    });
-
-    return res.status(200).send("EVENT_RECEIVED");
+      return res.status(200).send("EVENT_RECEIVED");
+    }
+    return res.sendStatus(403);
+  } catch (error) {
+    console.error("Error handling Facebook message:", error);
+    return res.status(500).send("SERVER_ERROR");
   }
-  return res.sendStatus(404);
 });
 
 app.listen(configs.port, () => {
