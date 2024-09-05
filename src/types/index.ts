@@ -1,15 +1,17 @@
-// src/types/index.ts
-export interface FacebookMessageEvent {
+export type MessageResponse = {
   object: string;
-  entry: {
-    id: string;
+  entry: Array<{
     time: number;
-    messaging: [
-      {
-        sender: { id: string };
-        recipient: { id: string };
-        message: { text: string };
-      }
-    ];
-  }[];
-}
+    id: string;
+    messaging: Array<{
+      sender: { id: string };
+      recipient: { id: string };
+      timestamp: string;
+      message: {
+        is_echo: boolean;
+        mid: string;
+        text: string;
+      };
+    }>;
+  }>;
+};

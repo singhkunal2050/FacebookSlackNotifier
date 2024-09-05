@@ -4,6 +4,7 @@ import { sendMessage } from "./utils/slack.js";
 import configs from "./config/appConfigs.js";
 import { verifyWebhook } from "./middlerwares/verifyToken.js";
 import log from "./utils/logger.js";
+import { MessageResponse } from "./types/index.js";
 
 const app = express();
 app.use(bodyParser.json());
@@ -15,6 +16,7 @@ app.get("/webhook", verifyWebhook);
 app.post("/webhook", (req: Request, res: Response) => {
   try {
     var signature = req.headers["x-hub-signature-256"];
+    const messageBody = req.body as MessageResponse;
     console.log("Received message from Facebook:", req.body, signature);
     log.info(
       "Received message from Facebook:" + JSON.stringify(req.body) + signature
