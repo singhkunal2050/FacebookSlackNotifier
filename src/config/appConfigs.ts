@@ -5,7 +5,7 @@ const configs = {
   slackToken: process.env.slackToken as string,
   slackChannelId: process.env.slackChannelId as string,
   verifyToken: process.env.verifyToken as string,
-  port: process.env.PORT || 3000,
+  port: process.env.appPort || 3000,
 };
 
 export default configs;
