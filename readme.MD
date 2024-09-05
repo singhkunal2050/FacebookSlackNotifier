@@ -42,7 +42,15 @@ export default configs;
 ```
 
 Replace `'your-slack-bot-token'`, `'your-slack-channel-id'`, and `'your-facebook-verify-token'` with your actual values.
-** Note: Use Environment Variables for these Sensitive Information **
+
+- ** Note: Use Environment Variables for these Sensitive Information **
+
+```.env
+SLACK_TOKEN=your-slack-token
+SLACK_CHANNEL_ID=your-channel-id
+VERIFY_TOKEN=your-verify-token
+PORT=3000
+```
 
 ### 4. Start the Development Server
 
