@@ -1,5 +1,9 @@
 # Slack-Facebook Integration Project
 
+## Demo 
+
+https://www.loom.com/share/93342a285e884831bc82cff51af22bd9
+
 ## Project Objective
 
 This project integrates Slack and Facebook, enabling automatic messaging in a Slack channel whenever a new message is received on a Facebook page. The integration is built using TypeScript, Express.js, and Slack's Web API.
