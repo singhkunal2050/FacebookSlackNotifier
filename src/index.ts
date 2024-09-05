@@ -14,8 +14,10 @@ app.get("/webhook", verifyWebhook);
 app.post("/webhook", (req: Request, res: Response) => {
   console.log("Received message from Facebook:", req.body);
   console.log(req.body.entry);
+  console.log(JSON.stringify(req.body.entry.messaging));
 
   if (req.body.object === "page") {
+    sendMessage(JSON.stringify(req.body.entry.messaging));
     req.body.entry.forEach((entry: any) => {
       const message = entry.messaging[0].message.text;
       console.log("Processing message:", message);
