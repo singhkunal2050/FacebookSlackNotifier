@@ -87,3 +87,5 @@ This will serve the application using `node`.
 
 - **Webhook Verification:** This project uses Facebook's webhook verification process. Ensure that your Facebook app's webhook is set up correctly to receive updates.
 - **Troubleshooting:** If you encounter issues, ensure all environment variables are correctly set and that the Slack bot is invited to the correct channel.
+
+- **Logging:** The project uses the `winston` library for logging. The log file is located at `/app.log`.
